@@ -4,7 +4,6 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
-const PORT = 5000;
 const mongoose = require("mongoose");
 const path = require("path");
 
@@ -36,4 +35,6 @@ app.get("/", (req, res) => {
 //   res.send("users express");
 // });
 
-app.listen(PORT, () => console.log("サーバーが起動しました"));
+app.listen(process.env.PORT || 5000, () =>
+  console.log("サーバーが起動しました")
+);
