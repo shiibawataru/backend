@@ -31,10 +31,7 @@ app.get("/", (req, res) => {
   res.send("hello express");
 });
 
-// app.get("/users", (req, res) => {
-//   res.send("users express");
-// });
-
+//
 app.listen(process.env.PORT || 5000, () =>
   console.log("サーバーが起動しました")
 );
