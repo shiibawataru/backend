@@ -6,6 +6,7 @@ const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 const mongoose = require("mongoose");
 const path = require("path");
+var cors = require("cors");
 
 require("dotenv").config();
 
@@ -26,6 +27,14 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
+
+app.use(
+  cors({
+    origin: "http://localhost:3000", //アクセス許可するオリジン
+    credentials: true, //レスポンスヘッダーにAccess-Control-Allow-Credentials追加
+    optionsSuccessStatus: 200, //レスポンスstatusを200に設定
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("hello express");
