@@ -28,6 +28,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
 
+//cors
 app.use(
   cors({
     origin: "http://localhost:3000", //アクセス許可するオリジン
