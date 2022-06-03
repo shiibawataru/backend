@@ -28,8 +28,9 @@ app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
 
 app.get("/", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.send("hello express");
-  res.set({ "Access-Control-Allow-Origin": "*" }); // ここでヘッダーにアクセス許可の情報を追加
+  // res.set({ "Access-Control-Allow-Origin": "*" }); // ここでヘッダーにアクセス許可の情報を追加
 });
 
 // app.get("/users", (req, res) => {
