@@ -29,6 +29,7 @@ app.use("/api/upload", uploadRoute);
 
 app.get("/", (req, res) => {
   res.send("hello express");
+  res.set({ "Access-Control-Allow-Origin": "*" }); // ここでヘッダーにアクセス許可の情報を追加
 });
 
 //
