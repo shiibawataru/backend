@@ -20,10 +20,10 @@ const PostSchema = new mongoose.Schema(
     replies: {
       type: Array,
       default: [
-        {
-          userId: String,
-          comment: String,
-        },
+        // {
+        //   userId: String,
+        //   comment: String,
+        // },
       ],
     },
   },
