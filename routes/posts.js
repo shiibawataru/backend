@@ -83,6 +83,22 @@ router.put("/:id/like", async (req, res) => {
   }
 });
 
+// 特定の投稿にリプライコメントを追加
+router.put("/:id/reply", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    await post.updateOne({
+      $push: {
+        replies: req.body.userId,
+      },
+    });
+
+    return res.status(200).json("投稿にリプライしました");
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // プロフィール専用のタイムラインの取得
 router.get("/profile/:username", async (req, res) => {
   try {
