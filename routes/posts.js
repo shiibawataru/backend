@@ -89,7 +89,7 @@ router.put("/:id/reply", async (req, res) => {
     const post = await Post.findById(req.params.id);
     await post.updateOne({
       $push: {
-        replies: req.body.comment,
+        replies: { userId: req.body.userId, comment: req.body.comment },
       },
     });
 
