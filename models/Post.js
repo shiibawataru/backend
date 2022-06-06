@@ -19,7 +19,12 @@ const PostSchema = new mongoose.Schema(
     },
     replies: {
       type: Array,
-      default: [],
+      default: [
+        {
+          userId: String,
+          comment: String,
+        },
+      ],
     },
   },
   { timestamps: true }
