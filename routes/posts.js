@@ -63,7 +63,7 @@ router.put("/:id/like", async (req, res) => {
     if (!post.likes.includes(req.body.userId)) {
       await post.updateOne({
         $push: {
-          likes: req.body.comment
+          likes: req.body.userId,
         },
       });
 
@@ -89,7 +89,7 @@ router.put("/:id/reply", async (req, res) => {
     const post = await Post.findById(req.params.id);
     await post.updateOne({
       $push: {
-        replies: req.body.userId,req.body
+        replies: req.body.comment,
       },
     });
 
