@@ -92,17 +92,17 @@ router.put("/:id/unfollow", async (req, res) => {
       const user = await User.findById(req.params.id);
       const currentUser = await User.findById(req.body.userId);
       // フォロワーに存在したらフォローを外せる
-      if (user.followers.includes(req.body.userId)) {
+      if (user.followers[0].userId.includes(req.body.userId)) {
         await user.updateOne({
           $pull: {
             // followers: req.body.userId,
-            followers: { userId: req.body.userId, username: req.body.username },
+            followers: { userId: req.body.userId },
           },
         });
         await currentUser.updateOne({
           $pull: {
             // followings: req.params.id,
-            followings: { userId: req.params.id, username: req.body.username },
+            followings: { userId: req.params.id },
           },
         });
         return res.status(200).json("フォロー解除しました");
