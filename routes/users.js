@@ -63,12 +63,12 @@ router.put("/:id/follow", async (req, res) => {
       if (!user.followers.includes(req.body.userId)) {
         await user.updateOne({
           $push: {
-            followers: req.body.userId,
+            followers: { userId: req.body.userId, username: req.body.username },
           },
         });
         await currentUser.updateOne({
           $push: {
-            followings: req.params.id,
+            followings: { userId: req.params.id, username: req.body.username },
           },
         });
         return res.status(200).json("フォローに成功しました");
