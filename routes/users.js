@@ -95,12 +95,14 @@ router.put("/:id/unfollow", async (req, res) => {
       if (user.followers.includes(req.body.userId)) {
         await user.updateOne({
           $pull: {
-            followers: req.body.userId,
+            // followers: req.body.userId,
+            followers: { userId: req.body.userId, username: req.body.username },
           },
         });
         await currentUser.updateOne({
           $pull: {
-            followings: req.params.id,
+            // followings: req.params.id,
+            followings: { userId: req.params.id, username: req.body.username },
           },
         });
         return res.status(200).json("フォロー解除しました");
